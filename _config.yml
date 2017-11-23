@@ -17,11 +17,12 @@ title: Balint's Blog
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   I post sometimes mostly about programming, Lego or robots, or some other
-  things what I find interesting at the moment. 
+  things what I find interesting at the moment.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bdomokos74
 github_username:  bdomokos74
+google_analytics: true
 
 # Build settings
 markdown: kramdown

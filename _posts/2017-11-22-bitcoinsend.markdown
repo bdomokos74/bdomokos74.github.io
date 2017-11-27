@@ -4,13 +4,13 @@ title:  "Send some bitcoins from command line!"
 date:   2017-11-22 22:06:33 +0100
 categories: jekyll update
 ---
-So you want to write some awesome bitcoin apps, but just before getting started with it, you want to send some bitcoins manually..
+So you want to write some awesome bitcoin apps, but first you want to send some bitcoins manually from the command line to see how it works..
 
 Here's one way to do it using Javascript and <https://bitcoinjs.org/>. First build a transaction string, then push it to the bitcoin network with <https://api.blockcypher.com/v1/btc/main>.
 
 Blockcypher has a mostly RESTful API, you can use to query objects and push transaction to the network.
 
-Start with creating a Node project and installing some dependencies like this:
+Start with creating a Node project and install some dependencies like this:
 ```bash
 mkdir bitcoinsend ; cd bitcoinsend
 npm init # answer some questions here
@@ -18,13 +18,13 @@ npm install bitcoinjs-lib
 npm install assert
 node
 ```
-Now I have a Node REPL and I can create a private/public key pair (the wallet):
+Now having a Node REPL up and running, create a private/public key pair (the wallet):
 ```javascript
 var assert = require('assert')
 var bitcoin = require('bitcoinjs-lib')
 
 var net = bitcoin.networks.bitcoin;
-// Here you can youse the testnet to experiment first. It is possible to get tBTCs (test bitcoins) to get started.
+// Here it is possible to use bitcoin.networks.testnet to experiment first. You can get free tBTCs (test bitcoins) to get started.
 var newKeyPair = bitcoin.ECPair.makeRandom(
   {network: net}
 );
@@ -37,11 +37,11 @@ newKeyPair.getAddress(); // this is your address, the public key
 // 141qda2EbVYxTbZurhKgV5fuCrd1yfWJ3Q
 ```
 
-Use the new address to receive some bitcoins from a wallet or exchange. Send some bitcoins to the new address. When done with that, find the transaction. Just paste the transaction id (your wallet should show) to the search box in <https://live.blockcypher.com/>.
+Use the new address to receive some bitcoins from a wallet or an exchange: send some bitcoins to the new address. When done with that, find the transaction. Just paste the transaction id (your wallet should show) to the search box in <https://live.blockcypher.com/>.
 
 You get something like: [https://live.blockcypher.com/btc/tx/f6c70b2fddbcdd14df35ed7...](https://live.blockcypher.com/btc/tx/f6c70b2fddbcdd14df35ed723de6238b5567eb2aafcc7a9f4c07e669b5ff288b/)
 
-But it can be done without the browser, curl and [jq](https://stedolan.github.io/jq/) can get the necessary data without leaving shell:
+But it can be done without the browser, curl and [jq](https://stedolan.github.io/jq/) can get the necessary data without leaving the command line:
 ```bash
 curl https://api.blockcypher.com/v1/btc/main/txs/f6c70b2fddbcdd14df35ed723de6238b5567eb2aafcc7a9f4c07e669b5ff288b | jq '.outputs[] | {addr: .addresses[0], val: .value}'
 ```
@@ -157,18 +157,18 @@ Gives:
 ```
 Copy the transaction id and browse to
 [https://live.blockcypher.com/btc/tx/c9d9d441705d47e49c...](https://live.blockcypher.com/btc/tx/c9d9d441705d47e49c522fc4580aecfdb80cb3d89334b84f9c391c7f23696d9f/)
-Your wallet should notify you that you are getting bitcoins. Depending on the fee you used, the time to confirm will be varying.
+Your receiving wallet should notify you that you are getting bitcoins. Depending on the fee you used, the time to confirm will be varying.
 
 ## Further links
-
-<https://github.com/bitcoinjs/bitcoinjs-lib>
-
-Blockcypher API DOC: <https://www.blockcypher.com/dev/bitcoin/>
 
 I found the following resources very interesting:
 <https://crypto.stanford.edu/cs251_fall15/>
 
 With a link to the textbook here: <https://crypto.stanford.edu/cs251/syllabus.html>
+
+<https://github.com/bitcoinjs/bitcoinjs-lib>
+
+Blockcypher API DOC: <https://www.blockcypher.com/dev/bitcoin/>
 
 For processing JSON from the command line:
 <https://stedolan.github.io/jq/>

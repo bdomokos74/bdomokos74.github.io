@@ -41,7 +41,7 @@ Use the new address to receive some bitcoins from a wallet or an exchange: send 
 
 You get something like: [https://live.blockcypher.com/btc/tx/f6c70b2fddbcdd14df35ed7...](https://live.blockcypher.com/btc/tx/f6c70b2fddbcdd14df35ed723de6238b5567eb2aafcc7a9f4c07e669b5ff288b/)
 
-But it can be done without the browser, curl and [jq](https://stedolan.github.io/jq/) can get the necessary data without leaving the command line:
+But it can be done without the browser, curl and [jq](https://stedolan.github.io/jq/) can get the necessary data without leaving the command line (open a new terminal, instead of typing this to the Node console):
 ```bash
 curl https://api.blockcypher.com/v1/btc/main/txs/f6c70b2fddbcdd14df35ed723de6238b5567eb2aafcc7a9f4c07e669b5ff288b | jq '.outputs[] | {addr: .addresses[0], val: .value}'
 ```

@@ -1,3 +1,7 @@
+---
+layout: none
+permalink: /.well-known/microsoft-identity-association.json
+---
 {
   "associatedApplications": [
     {
